@@ -306,6 +306,7 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
     protected synchronized void buildGoogleApiClient()
     {
+        try {
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -313,10 +314,13 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
                 .build();
 
         googleApiClient.connect();
+        }catch(Exception e){
+        }
     }
 
     @Override
     protected void onStop() {
+
         super.onStop();
 
         if (!currentLogoutDriverStatus) {
@@ -327,11 +331,14 @@ public class DriversMapActivity extends FragmentActivity implements OnMapReadyCa
 
     private void DisconnectDriver()
     {
+        try {
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference DriverAvalablityRef = FirebaseDatabase.getInstance().getReference().child("Driver Available");
 
         GeoFire geoFire = new GeoFire(DriverAvalablityRef);
         geoFire.removeLocation(userID);
+    }catch(Exception e){
+    }
     }
 
     private void LogoutDriver()

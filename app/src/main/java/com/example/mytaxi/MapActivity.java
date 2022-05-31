@@ -87,7 +87,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         searchView = findViewById(R.id.search_location);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference().child("Users").child("Customers");
-        // Getting a reference to the map
+        // Получение ссылки на карту
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -96,7 +96,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             address = getIntent().getExtras().get("address").toString();
 
             searchView.setQuery(address, false);
-            //      searchView.clearFocus();
+
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override

@@ -83,7 +83,7 @@ public class SecondMapActivity extends AppCompatActivity implements OnMapReadyCa
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference().child("Users").child("Customers");
-        // Getting a reference to the map
+        // Получение ссылки на карту
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -92,7 +92,7 @@ public class SecondMapActivity extends AppCompatActivity implements OnMapReadyCa
             address2 = getIntent().getExtras().get("address2").toString();
 
             searchView.setQuery(address2, false);
-            //           searchView.clearFocus();
+
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -178,12 +178,12 @@ public class SecondMapActivity extends AppCompatActivity implements OnMapReadyCa
 
                     if (addresses != null) {
                         Address returnedAddress = addresses.get(0);
-                        final String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                        final String address = addresses.get(0).getAddressLine(0);
                         String city = addresses.get(0).getLocality();
                         String state = addresses.get(0).getAdminArea();
                         String country = addresses.get(0).getCountryName();
                         String postalCode = addresses.get(0).getPostalCode();
-                        String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+                        String knownName = addresses.get(0).getFeatureName(); //
                         StringBuilder strReturnedAddress = new StringBuilder(
                                 address);
                         for (int i = 0; i < returnedAddress.getMaxAddressLineIndex(); i++) {
